@@ -21,13 +21,9 @@ class Lottery constructor(context: Context?, attrs: AttributeSet?) : View(contex
     private var mLastX = 0
     private var mLastY = 0
 
-    private var message //中奖信息
-            : String? = null
-    private var mBackground //文字背景矩形大小
-            : Rect? = null
-    private val messagePaint = Paint() //文字画笔
-
-    private val isClear = false
+    private var message : String? = null
+    private var mBackground : Rect? = null
+    private val messagePaint = Paint()
 
     @SuppressLint("DrawAllocation")
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -35,9 +31,7 @@ class Lottery constructor(context: Context?, attrs: AttributeSet?) : View(contex
         mBitmap = Bitmap.createBitmap(measuredWidth, measuredHeight, Bitmap.Config.ARGB_8888) //以获得的宽高创建一个32位的bitmap
         mCanvas = Canvas(mBitmap!!)
 
-        mCanvas!!.drawColor(Color.GREEN) //设置画布的颜色为绿色
-
-
+        mCanvas!!.drawColor(Color.GREEN)
         mBackground = Rect()
         message = "恭喜中奖，3万元!"
         messagePaint.color = Color.RED
@@ -45,10 +39,9 @@ class Lottery constructor(context: Context?, attrs: AttributeSet?) : View(contex
         messagePaint.style = Paint.Style.STROKE
         message?.length?.let { messagePaint.getTextBounds(message, 0, it, mBackground) }
         messagePaint.textSize = 80F
-        // 设置画笔
         mOutterPaint.color = Color.BLUE
-        mOutterPaint.isAntiAlias = true //使用抗锯齿功能，会消耗较大资源，绘制图形速度会变慢
-        mOutterPaint.isDither = true //图像抖动处理,会使绘制出来的图片颜色更加平滑和饱满，图像更加清晰
+        mOutterPaint.isAntiAlias = true
+        mOutterPaint.isDither = true
         mOutterPaint.style = Paint.Style.STROKE
         mOutterPaint.strokeJoin = Paint.Join.ROUND
         mOutterPaint.strokeCap = Paint.Cap.ROUND
@@ -59,8 +52,8 @@ class Lottery constructor(context: Context?, attrs: AttributeSet?) : View(contex
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         val action = event!!.action
-        val x = event.x.toInt() //获得x坐标
-        val y = event.y.toInt() //获得y坐标
+        val x = event.x.toInt()
+        val y = event.y.toInt()
         when (action) {
             MotionEvent.ACTION_DOWN -> {
                 mLastX = x
@@ -75,7 +68,7 @@ class Lottery constructor(context: Context?, attrs: AttributeSet?) : View(contex
             else -> {
             }
         }
-        invalidate() //刷新View，回调onDraw方法
+        invalidate()
         return true
     }
 

@@ -1,2 +1,3 @@
+include ':scrolllistconflict'
 include ':app'
 rootProject.name = "OriApp"
