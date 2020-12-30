@@ -1,3 +1,4 @@
+include ':handlerleak'
 include ':scrolllistconflict'
 include ':app'
 rootProject.name = "OriApp"
